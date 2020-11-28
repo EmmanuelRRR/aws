@@ -1,0 +1,1282 @@
+Proceso Menu_de_aerolinea
+//////Esta parte es el menu inicial al cual debe el usuario de introducir su nombre, edad y destino.///////
+/// Esta cañon 
+	Escribir 'Bienvenido al menu de AT por favor introduzca su nombre '
+	Leer N
+	Borrar pantalla 
+	Escribir 'Introduzca su edad por favor'
+	Leer E
+	Borrar pantalla
+	Escribir 'A que lugar desea viajar 1:Monterrey 2:Guadalajara 3:Ciudad de mexico 4:Guerrero 5:Yucatan 6:Campeche 7:Veracruz 8:Oaxaca 9:Sinaloa 10:Sonora'
+	Leer D
+	Borrar pantalla
+//////En esta parte empezaran los procesos de compra el tipo de viaje ya sea redondo o sencillo, el peso de su equipaje,forma de pago, en el apartado de viaje redondo////
+	Segun D Hacer
+		1:	
+			pre<-1250
+			Escribir '$',pre,'mnx';
+			nombrevv<-"Monterrey";
+			Escribir 'Usted ha seleccionado Monterrey'
+			Escribir 'Viaje 1:redondo 2:sencillo'
+			Leer T
+			Borrar Pantalla
+			Segun T Hacer
+				1:
+					Escribir 'Su viaje sera redondo'
+					nombretv<-"viaje redondo";
+					pre<-pre+750
+					Escribir '$',pre,'precio bruto';
+					Escribir 'Introduzca el peso de su equipaje a documentar en Kg'
+					Leer P
+					Borrar Pantalla
+					Escribir 'En caso de exceder mas de 20 kg tendr� un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p;
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,' mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos
+					Borrar pantalla
+					Escribir 'seleccione la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						De Otro Modo:
+							Escribir 'Por el momento no contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+//////Este apartado es de viaje sencillo se introduce el peso de la maleta el proceso de costos extras ya sea por el peso del equipaje o uso de tarjeta//////////
+				2:
+					Escribir 'Su viaje sera sencillo'
+					nombretv<-"Viaje sencillo";
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,'mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos
+					Borrar pantalla
+					Escribir 'seleccione la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta"
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'Por el momento no contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+				De Otro Modo:
+					Escribir 'Deberia escoger entre sencillo y redondo gracias'
+			FinSegun
+			Esperar 2 segundos
+//En esta parte se aplica el iva con una operacion muy sencilla asignando el valor del iva//
+			Borrar Pantalla
+			iva<-1.16
+			pre<-pre*1.16
+			Escribir 'El costo total es: $',pre,'mnx';
+			Escribir 'Gustaria escoger el asiento o si no se le asignaria de forma aleatoria 1:si 2:no'
+			Leer A
+//Aqui se muestran dos opciones al usuariosi quiere escoger un asiento o se le asigna aleatoriamente//
+			Segun A Hacer
+				1:
+					Escribir 'El costo extra sera de $25 mnx'
+					ce<-25
+					pre<-pre+ce
+					Escribir 'Cual asiento escogera,1:1a 2:2a 3:1b 4:2b 5:1c 6:2c 7:1d 8:2d 9:1e 10:2e';
+					Leer A
+					Segun A Hacer
+						1:
+							Escribir 'Escogio el asiento 1a'
+						2:
+							Escribir 'Escogio el asiento 2a'
+						3:
+							Escribir 'Escogio el asiento 1b'
+						4:
+							Escribir 'Escogio el asiento 2b'
+						5:
+							Escribir 'Escogio el asiento 1c'
+						6:
+							Escribir 'Escogio el asiento 2c'
+						7:
+							Escribir 'Escogio el asiento 1d'
+						8:
+							Escribir 'Escogio el asiento 2d'
+						9:
+							Escribir 'Escogio el asiento 1e'
+						10:
+							Escribir 'Escogio el asiento 2e'
+						De Otro Modo:
+							Escribir 'Son los unicos asientos disponibles, disculpe las molestias'
+					FinSegun
+					Escribir 'El monto total es:',pre;
+//Aqui si es que el usuario no quiere escoger su asiento se le asigna uno de forma aleatoria//
+				2:
+					Escribir 'Se le asignara un asiento aleatorio'
+					x<-azar(10)
+					Escribir '',x
+				De Otro Modo:
+					Escribir 'Error'
+				Fin Segun
+//Y se repiten los procesos en todos los destinos con diferentes tarifas obviamente dependiendo de la distancia//
+		2:	
+			pre<-876
+			Escribir '$',pre,'mnx';
+			Escribir 'Usted escogio Guadalajara'
+			nombrevv<-"Guadalajara";
+			Escribir 'Viaje 1:redondo $1760 2:sencillo $876'
+			Leer T
+			Borrar Pantalla
+			Segun T Hacer
+				1:
+					Escribir 'Su viaje sera redondo'
+					nombretv<-"Viaje redondo";
+					pre<-pre+884
+					Escribir '$',pre,'precio bruto';
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Borrar Pantalla
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p;
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,' mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 Segundos
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Tarjeta";
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'por el momento no contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+					
+				2:
+					Escribir 'Su viaje sera sencillo'
+					nombretv<-"Sencillo";
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,'mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Tarjeta";
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo"
+						De Otro Modo:
+							Escribir 'Por el momento no contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+				De Otro Modo:
+					Escribir 'Deberia escoger entre sencillo y redondo gracias'
+			FinSegun
+			Esperar 2 segundos
+			Borrar Pantalla
+			iva<-1.16
+			pre<-pre*1.16
+			Escribir 'El costo total es: $',pre,'mnx';
+			Escribir 'Gustaria escoger el asiento 1:si 2:no'
+			Leer A
+			Segun A Hacer
+				1:
+					Escribir 'El costo extra sera de $25 mnx'
+					ce<-25
+					pre<-pre+ce
+					Escribir 'Cual asiento escogera,1:1a 2:2a 3:1b 4:2b 5:1c 6:2c 7:1d 8:2d 9:1e 10:2e';
+					Leer A
+					Segun A Hacer
+						1:
+							Escribir 'Escogio el asiento 1a'
+						2:
+							Escribir 'Escogio el asiento 2a'
+						3:
+							Escribir 'Escogio el asiento 1b'
+						4:
+							Escribir 'Escogio el asiento 2b'
+						5:
+							Escribir 'Escogio el asiento 1c'
+						6:
+							Escribir 'Escogio el asiento 2c'
+						7:
+							Escribir 'Escogio el asiento 1d'
+						8:
+							Escribir 'Escogio el asiento 2d'
+						9:
+							Escribir 'Escogio el asiento 1e'
+						10:
+							Escribir 'Escogio el asiento 2e'
+						De Otro Modo:
+							Escribir 'Son los unicos asientos disponibles, disculpe las molestias'
+					FinSegun
+					Escribir 'El monto total es:',pre;
+				2:
+					Escribir 'Se le asignara un asiento aleatorio'
+					x<-azar(10)
+					Escribir '',x
+				De Otro Modo:
+					Escribir 'Error'
+			Fin Segun
+		3:	
+			pre<-1500
+			Escribir '$',pre,'mnx';
+			Escribir 'Usted escogio Ciudad de mexico'
+			nombrevv<-"Ciudad de mexico";
+			Escribir 'Viaje 1:redondo $3122 2:sencillo $1500 '
+			Leer T
+			Borrar Pantalla
+			Segun T Hacer
+				1:
+					Escribir 'Su viaje sera redondo'
+					nombretv<-"Viaje redondo";
+					pre<-pre+1622
+					Escribir '$',pre,'precio bruto';
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Borrar Pantalla
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,' mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 5 segundos
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Tarjeta";
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+					
+				2:
+					Escribir 'Su viaje sera sencillo'
+					nombretv<-"Viaje sencillo"
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,'mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'por el momento no contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+				De Otro Modo:
+					Escribir 'Deberia escoger entre sencillo y redondo gracias'
+			FinSegun
+			Esperar 2 segundos
+			Borrar Pantalla
+			iva<-1.16
+			pre<-pre*1.16
+			Escribir 'El costo total es: $',pre,'mnx';
+			Escribir 'Gustaria escoger el asiento 1:si 2:no'
+			Leer A
+			Segun A Hacer
+				1:
+					Escribir 'El costo extra sera de $25 mnx'
+					ce<-25
+					pre<-pre+ce
+					Escribir 'Cual asiento escogera,1:1a 2:2a 3:1b 4:2b 5:1c 6:2c 7:1d 8:2d 9:1e 10:2e';
+					Leer A
+					Segun A Hacer
+						1:
+							Escribir 'Escogio el asiento 1a'
+						2:
+							Escribir 'Escogio el asiento 2a'
+						3:
+							Escribir 'Escogio el asiento 1b'
+						4:
+							Escribir 'Escogio el asiento 2b'
+						5:
+							Escribir 'Escogio el asiento 1c'
+						6:
+							Escribir 'Escogio el asiento 2c'
+						7:
+							Escribir 'Escogio el asiento 1d'
+						8:
+							Escribir 'Escogio el asiento 2d'
+						9:
+							Escribir 'Escogio el asiento 1e'
+						10:
+							Escribir 'Escogio el asiento 2e'
+						De Otro Modo:
+							Escribir 'Son los unicos asientos disponibles, disculpe las molestias'
+					FinSegun
+					Escribir 'El monto total es:',pre;
+				2:
+					Escribir 'Se le asignara un asiento aleatorio'
+					x<-azar(10)
+					Escribir '',x
+				De Otro Modo:
+					Escribir 'Error'
+			Fin Segun
+		4:	
+			pre<-1679
+			Escribir '$',pre,'mnx';
+			Escribir 'Usted escogio Guerrero'
+			nombrevv<-"Guerrero";
+			Escribir 'Viaje 1:redondo $3358 2:sencillo $1679'
+			Leer T
+			Borrar Pantalla
+			Segun T Hacer
+				1:
+					Escribir 'Su viaje sera redondo'
+					nombretv<-"Viaje redondo";
+					pre<-pre+1679
+					Escribir '$',pre,'precio bruto';
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Borrar Pantalla
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p;
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,' mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 Segundos
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+					
+					
+				2:
+					Escribir 'Su viaje sera sencillo'
+					nombretv<-"Viaje sencillo";
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,'mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+				De Otro Modo:
+					Escribir 'Deberia escoger entre sencillo y redondo gracias'
+			FinSegun
+			Esperar 2 segundos
+			Borrar Pantalla
+			iva<-1.16
+			pre<-pre*1.16
+			Escribir 'El costo total es: $',pre,'mnx';
+			Escribir 'Gustaria escoger el asiento 1:si 2:no'
+			Leer A
+			Segun A Hacer
+				1:
+					Escribir 'El costo extra sera de $25 mnx'
+					ce<-25
+					pre<-pre+ce
+					Escribir 'Cual asiento escogera,1:1a 2:2a 3:1b 4:2b 5:1c 6:2c 7:1d 8:2d 9:1e 10:2e';
+					Leer A
+					Segun A Hacer
+						1:
+							Escribir 'Escogio el asiento 1a'
+						2:
+							Escribir 'Escogio el asiento 2a'
+						3:
+							Escribir 'Escogio el asiento 1b'
+						4:
+							Escribir 'Escogio el asiento 2b'
+						5:
+							Escribir 'Escogio el asiento 1c'
+						6:
+							Escribir 'Escogio el asiento 2c'
+						7:
+							Escribir 'Escogio el asiento 1d'
+						8:
+							Escribir 'Escogio el asiento 2d'
+						9:
+							Escribir 'Escogio el asiento 1e'
+						10:
+							Escribir 'Escogio el asiento 2e'
+						De Otro Modo:
+							Escribir 'Son los unicos asientos disponibles, disculpe las molestias'
+					FinSegun
+					Escribir 'El monto total es:',pre;
+				2:
+					Escribir 'Se le asignara un asiento aleatorio'
+					x<-azar(10)
+					Escribir '',x
+				De Otro Modo:
+					Escribir 'Error'
+			Fin Segun
+		5:	
+			pre<-650
+			Escribir '$',pre,'mnx';
+			Escribir 'Usted escogio Yucatan'
+			nombrevv<-"Yucatan";
+			Escribir 'Viaje 1:redondo $1300 2:sencillo $650'
+			Leer T
+			Borrar Pantalla
+			Segun T Hacer
+				1:
+					Escribir 'Su viaje sera redondo'
+					nombretv<-"Viaje redondo";
+					pre<-pre+650
+					Escribir '$',pre,'precio bruto';
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Borrar Pantalla
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p;
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,' mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo2";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+					
+				2:
+					Escribir 'Su viaje sera sencillo'
+					nombretv<-"Viaje sencillo";
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,'mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos 
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+				De Otro Modo:
+					Escribir 'Deberia escoger entre sencillo y redondo gracias'
+			FinSegun
+			Esperar 2 segundos 
+			Borrar Pantalla
+			iva<-1.16
+			pre<-pre*1.16
+			Escribir 'El costo total es: $',pre,'mnx';
+			Escribir 'Gustaria escoger el asiento 1:si 2:no'
+			Leer A
+			Segun A Hacer
+				1:
+					Escribir 'El costo extra sera de $25 mnx'
+					ce<-25
+					pre<-pre+ce
+					Escribir 'Cual asiento escogera,1:1a 2:2a 3:1b 4:2b 5:1c 6:2c 7:1d 8:2d 9:1e 10:2e';
+					Leer A
+					Segun A Hacer
+						1:
+							Escribir 'Escogio el asiento 1a'
+						2:
+							Escribir 'Escogio el asiento 2a'
+						3:
+							Escribir 'Escogio el asiento 1b'
+						4:
+							Escribir 'Escogio el asiento 2b'
+						5:
+							Escribir 'Escogio el asiento 1c'
+						6:
+							Escribir 'Escogio el asiento 2c'
+						7:
+							Escribir 'Escogio el asiento 1d'
+						8:
+							Escribir 'Escogio el asiento 2d'
+						9:
+							Escribir 'Escogio el asiento 1e'
+						10:
+							Escribir 'Escogio el asiento 2e'
+						De Otro Modo:
+							Escribir 'Son los unicos asientos disponibles, disculpe las molestias'
+					FinSegun
+					Escribir 'El monto total es:',pre;
+				2:
+					Escribir 'Se le asignara un asiento aleatorio'
+					x<-azar(10)
+					Escribir '',x
+				De Otro Modo:
+					Escribir 'Error'
+			Fin Segun
+		6:	
+			pre<-820
+			Escribir '$',pre,'mnx';
+			Escribir 'Usted escogio Campeche'
+			nombrevv<-"Campeche";
+			Escribir 'Viaje 1:redondo $1650 2:sencillo $820'
+			Leer T
+			Borrar Pantalla
+			Segun T Hacer
+				1:
+					Escribir 'Su viaje sera redondo'
+					nombretv<-"Viaje redondo";
+					pre<-pre+830
+					Escribir '$',pre,'precio bruto';
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Borrar Pantalla
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p;
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,' mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos 
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+					
+				2:
+					Escribir 'Su viaje sera sencillo'
+					nombretv<-"Viaje sencillo";
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Escribir 'si excede mas de 20 kg se aplicara un cargo extra de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,'mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos 
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+				De Otro Modo:
+					Escribir 'Deberia escoger entre sencillo y redondo gracias'
+			FinSegun
+			Esperar 2 segundos
+			Borrar Pantalla
+			iva<-1.16
+			pre<-pre*1.16
+			Escribir 'El costo total es: $',pre,'mnx';
+			Escribir 'Gustaria escoger el asiento 1:si 2:no'
+			Leer A
+			Segun A Hacer
+				1:
+					Escribir 'El costo extra sera de $25 mnx'
+					ce<-25
+					pre<-pre+ce
+					Escribir 'Cual asiento escogera,1:1a 2:2a 3:1b 4:2b 5:1c 6:2c 7:1d 8:2d 9:1e 10:2e';
+					Leer A
+					Segun A Hacer
+						1:
+							Escribir 'Escogio el asiento 1a'
+						2:
+							Escribir 'Escogio el asiento 2a'
+						3:
+							Escribir 'Escogio el asiento 1b'
+						4:
+							Escribir 'Escogio el asiento 2b'
+						5:
+							Escribir 'Escogio el asiento 1c'
+						6:
+							Escribir 'Escogio el asiento 2c'
+						7:
+							Escribir 'Escogio el asiento 1d'
+						8:
+							Escribir 'Escogio el asiento 2d'
+						9:
+							Escribir 'Escogio el asiento 1e'
+						10:
+							Escribir 'Escogio el asiento 2e'
+						De Otro Modo:
+							Escribir 'Son los unicos asientos disponibles, disculpe las molestias'
+					FinSegun
+					Escribir 'El monto total es:',pre;
+				2:
+					Escribir 'Se le asignara un asiento aleatorio'
+					x<-azar(10)
+					Escribir '',x
+				De Otro Modo:
+					Escribir 'Error'
+			Fin Segun
+		7:	
+			pre<-960
+			Escribir '$',pre,'mnx';
+			Escribir 'Usted escogio Veracruz'
+			nombrevv<-"Veracruz";
+			Escribir 'Viaje 1:redondo $1920 2:sencillo $960'
+			Leer T
+			Borrar Pantalla
+			Segun T Hacer
+				1:
+					Escribir 'Su viaje sera redondo'
+					nombretv<-"Viaje redondo";
+					pre<-pre+960
+					Escribir '$',pre,'precio bruto';
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Borrar Pantalla
+					Escribir 'si excede mas de 20 kg se aplicara un cargo extra de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p;
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,' mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos extras no se pueden cancelar, asegurese de su desicion y arriesgue, el que no arriesga no gana'
+					Esperar 2 segundos 
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+					
+				2:
+					Escribir 'Su viaje sera sencillo'
+					nombretv<-"Viaje sencillo";
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,'mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos 
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+				De Otro Modo:
+					Escribir 'Deberia escoger entre sencillo y redondo gracias'
+			FinSegun
+			Esperar 2 segundos 
+			Borrar Pantalla
+			iva<-1.16
+			pre<-pre*1.16
+			Escribir 'El costo total es: $',pre,'mnx';
+			Escribir 'Gustaria escoger el asiento 1:si 2:no'
+			Leer A
+			Segun A Hacer
+				1:
+					Escribir 'El costo extra sera de $25 mnx'
+					ce<-25
+					pre<-pre+ce
+					Escribir 'Cual asiento escogera,1:1a 2:2a 3:1b 4:2b 5:1c 6:2c 7:1d 8:2d 9:1e 10:2e';
+					Leer A
+					Segun A Hacer
+						1:
+							Escribir 'Escogio el asiento 1a'
+						2:
+							Escribir 'Escogio el asiento 2a'
+						3:
+							Escribir 'Escogio el asiento 1b'
+						4:
+							Escribir 'Escogio el asiento 2b'
+						5:
+							Escribir 'Escogio el asiento 1c'
+						6:
+							Escribir 'Escogio el asiento 2c'
+						7:
+							Escribir 'Escogio el asiento 1d'
+						8:
+							Escribir 'Escogio el asiento 2d'
+						9:
+							Escribir 'Escogio el asiento 1e'
+						10:
+							Escribir 'Escogio el asiento 2e'
+						De Otro Modo:
+							Escribir 'Son los unicos asientos disponibles, disculpe las molestias'
+					FinSegun
+					Escribir 'El monto total es:',pre;
+				2:
+					Escribir 'Se le asignara un asiento aleatorio'
+					x<-azar(10)
+					Escribir '',x
+				De Otro Modo:
+					Escribir 'Error'
+			Fin Segun
+		8:	
+			pre<-1002
+			Escribir '$',pre,'mnx';
+			Escribir 'Usted escogio Oaxaca'
+			nombrevv<-"Oaxaca";
+			Escribir 'Viaje 1:redondo $2004 2:sencillo $1002'
+			Leer T
+			Borrar Pantalla
+			Segun T Hacer
+				1:
+					Escribir 'Su viaje sera redondo'
+					nombretv<-"Redondo";
+					pre<-pre+1002
+					Escribir '$',pre,'precio bruto';
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Borrar Pantalla
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p;
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,' mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos 
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+					
+				2:
+					Escribir 'Su viaje sera sencillo'
+					nombretv<-"Viaje sencillo";
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,'mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos 
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+				De Otro Modo:
+					Escribir 'Deberia escoger entre sencillo y redondo gracias'
+			FinSegun
+			Esperar 1 Segundos
+			Escribir 'Procesando';
+			Esperar 1 Segundos
+			Escribir 'Procesando.';
+			Esperar 1 Segundos
+			Escribir 'Precesando..';
+			Borrar Pantalla
+			iva<-1.16
+			pre<-pre*1.16
+			Escribir 'El costo total es: $',pre,'mnx';
+			Escribir 'Gustaria escoger el asiento 1:si 2:no'
+			Leer A
+			Segun A Hacer
+				1:
+					Escribir 'El costo extra sera de $25 mnx'
+					ce<-25
+					pre<-pre+ce
+					Escribir 'Cual asiento escogera,1:1a 2:2a 3:1b 4:2b 5:1c 6:2c 7:1d 8:2d 9:1e 10:2e';
+					Leer A
+					Segun A Hacer
+						1:
+							Escribir 'Escogio el asiento 1a'
+						2:
+							Escribir 'Escogio el asiento 2a'
+						3:
+							Escribir 'Escogio el asiento 1b'
+						4:
+							Escribir 'Escogio el asiento 2b'
+						5:
+							Escribir 'Escogio el asiento 1c'
+						6:
+							Escribir 'Escogio el asiento 2c'
+						7:
+							Escribir 'Escogio el asiento 1d'
+						8:
+							Escribir 'Escogio el asiento 2d'
+						9:
+							Escribir 'Escogio el asiento 1e'
+						10:
+							Escribir 'Escogio el asiento 2e'
+						De Otro Modo:
+							Escribir 'Son los unicos asientos disponibles, disculpe las molestias'
+					FinSegun
+					Escribir 'El monto total es:',pre;
+				2:
+					Escribir 'Se le asignara un asiento aleatorio'
+					x<-azar(10)
+					Escribir '',x
+				De Otro Modo:
+					Escribir 'Error'
+			Fin Segun
+		9:	
+			pre<-2800
+			Escribir '$',pre,'mnx';
+			Escribir 'Usted escogio Sinaloa'
+			nombrevv<-"Sinaloa";
+			Escribir 'Viaje 1:redondo $5600 2:sencillo $2800'
+			Leer T
+			Borrar Pantalla
+			Segun T Hacer
+				1:
+					Escribir 'Su viaje sera redondo'
+					nombretv<-"Viaje redondo";
+					pre<-pre+2800
+					Escribir '$',pre,'precio bruto';
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Borrar Pantalla
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p;
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,' mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos 
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta"
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo"
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+					
+					
+				2:
+					Escribir 'Su viaje sera sencillo'
+					nombretv<-"Viaje sencillo";
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,'mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 Segundos
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+				De Otro Modo:
+					Escribir 'Deberia escoger entre sencillo y redondo gracias'
+			FinSegun
+			Esperar 2 Segundos
+			Borrar Pantalla
+			iva<-1.16
+			pre<-pre*1.16
+			Escribir 'El costo total es: $',pre,'mnx';
+			Escribir 'Gustaria escoger el asiento 1:si 2:no'
+			Leer A
+			Segun A Hacer
+				1:
+					Escribir 'El costo extra sera de $25 mnx'
+					ce<-25
+					pre<-pre+ce
+					Escribir 'Cual asiento escogera,1:1a 2:2a 3:1b 4:2b 5:1c 6:2c 7:1d 8:2d 9:1e 10:2e';
+					Leer A
+					Segun A Hacer
+						1:
+							Escribir 'Escogio el asiento 1a'
+						2:
+							Escribir 'Escogio el asiento 2a'
+						3:
+							Escribir 'Escogio el asiento 1b'
+						4:
+							Escribir 'Escogio el asiento 2b'
+						5:
+							Escribir 'Escogio el asiento 1c'
+						6:
+							Escribir 'Escogio el asiento 2c'
+						7:
+							Escribir 'Escogio el asiento 1d'
+						8:
+							Escribir 'Escogio el asiento 2d'
+						9:
+							Escribir 'Escogio el asiento 1e'
+						10:
+							Escribir 'Escogio el asiento 2e'
+						De Otro Modo:
+							Escribir 'Son los unicos asientos disponibles, disculpe las molestias'
+					FinSegun
+					Escribir 'El monto total es:',pre;
+				2:
+					Escribir 'Se le asignara un asiento aleatorio'
+					x<-azar(10)
+					Escribir '',x
+				De Otro Modo:
+					Escribir 'Error'
+			Fin Segun
+		10:	
+			pre<-2780
+			Escribir '$',pre,'mnx';
+			Escribir 'Usted escogio Sonora'
+			nombrevv<-"Sonora";
+			Escribir 'Viaje 1:redondo $5560 2:sencillo $2780 '
+			Leer T
+			Borrar Pantalla
+			Segun T Hacer
+				1:
+					Escribir 'Su viaje sera redondo'
+					nombretv<-"Viaje redondo";
+					pre<-pre+2780
+					Escribir '$',pre,'precio bruto';
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Borrar Pantalla
+					Escribir 'si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p;
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,' mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 segundos
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+					
+				2:
+					Escribir 'Su viaje sera sencillo'
+					nombretv<-"Viaje sencillo";
+					Escribir 'Introduzca el peso de la maleta'
+					Leer P
+					Escribir 'Si excede mas de 20 kg se aplicara un cargo adicional de $30 por kg';
+					Si P>20 Entonces
+						Escribir 'El peso es de :',p,'Kg';
+						pk<-p-20
+						pk<-30*pk
+						pre<-pre+pk
+						Escribir 'El monto bruto es:$',pre,'mnx';
+					SiNo
+						Escribir 'El peso es de :',P,'Kg';
+					Fin Si
+					Escribir 'Los cargos adicionales no se pueden cancelar, asegurese de que la informacion que introduce sea la correcta'
+					Esperar 2 Segundos
+					Borrar pantalla
+					Escribir 'Escoja la forma de pago 1:Tarjeta 2:Efectivo'
+					Leer F
+					Segun F Hacer
+						1:
+							pre<-pre+80
+							nombretp<-"Tarjeta";
+							Escribir 'El precio bruto es:$',pre,'mnx';
+						2:
+							Escribir 'El precio bruto es:$',pre,'mnx';
+							nombretp<-"Efectivo";
+						De Otro Modo:
+							Escribir 'No contamos con otras formas de pago, dusculpe las molestias'
+					Fin Segun
+				De Otro Modo:
+					Escribir 'Deberia escoger entre sencillo y redondo gracias'
+			FinSegun
+			Esperar 2 Segundos
+			Borrar Pantalla
+			iva<-1.16
+			pre<-pre*1.16
+			Escribir 'El costo total es: $',pre,'mnx';
+			Escribir 'Gustaria escoger el asiento 1:si 2:no'
+			Leer A
+			Segun A Hacer
+				1:
+					Escribir 'El costo extra sera de $25 mnx'
+					ce<-25
+					pre<-pre+ce
+					Escribir 'Cual asiento escogera,1:1a 2:2a 3:1b 4:2b 5:1c 6:2c 7:1d 8:2d 9:1e 10:2e';
+					Leer A
+					Segun A Hacer
+						1:
+							Escribir 'Escogio el asiento 1a'
+						2:
+							Escribir 'Escogio el asiento 2a'
+						3:
+							Escribir 'Escogio el asiento 1b'
+						4:
+							Escribir 'Escogio el asiento 2b'
+						5:
+							Escribir 'Escogio el asiento 1c'
+						6:
+							Escribir 'Escogio el asiento 2c'
+						7:
+							Escribir 'Escogio el asiento 1d'
+						8:
+							Escribir 'Escogio el asiento 2d'
+						9:
+							Escribir 'Escogio el asiento 1e'
+						10:
+							Escribir 'Escogio el asiento 2e'
+						De Otro Modo:
+							Escribir 'Son los unicos asientos disponibles, disculpe las molestias'
+					FinSegun
+					Escribir 'El monto total es:',pre;
+				2:
+					Escribir 'Se le asignara un asiento aleatorio'
+					x<-azar(10)
+					Escribir '',x
+				De Otro Modo:
+					Escribir 'Error'
+			Fin Segun
+			
+		De Otro Modo:
+			Escribir 'No tenemos esa opcion disponible revise la lista denuevo por favor, los estados de destino son lo unicos disponibles gracias'
+	FinSegun
+	Borrar Pantalla
+	Esperar 1 Segundo
+	Escribir '........Datos...........'
+	Escribir 'El precio total es: $ ',pre,' mnx';
+	Escribir 'El nombre del cliente es: ',N;
+	Escribir 'Edad: ',E,' a�os';
+	Escribir 'El destino es: ',nombrevv;
+	Escribir 'El tipo de viaje es: ',nombretv;
+	Escribir 'El peso de la maleta: ',P,' Kg';
+	Escribir 'Forma de pago: ',nombretp;
+	Escribir 'El impuesto es de: ',iva,' %';
+	Escribir 'El asiento es :',A;
+	Escribir 'De parte de Airplanes Travelers le agradecemos su preferencia'
+	Escribir '�Buen viaje!'
+	Escribir  'Estos son buenos recuerdos, aqui aprendi a progrmar <3'
+
+FinProceso
